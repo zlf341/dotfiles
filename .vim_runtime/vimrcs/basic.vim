@@ -139,6 +139,9 @@ set tm=500
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+" highlight current line
+set cursorline
+set cursorcolumn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -186,9 +189,14 @@ set expandtab
 " Be smart when using tabs ;)
 set smarttab
 
-" 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+" 1 tab == 2 spaces
+" set shiftwidth=2
+" set tabstop=2
+" autocmd BufRead *.py,*.js set list smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class cc=79 colorcolumn=79
+autocmd BufRead *.py set ts=4 sw=4
+autocmd BufRead *.js set ts=2 sw=2 nu
+autocmd BufRead *.css set ts=2 sw=2
+autocmd BufRead,BufNewFile *.html set ts=2 sw=2
 
 " Linebreak on 500 characters
 set lbr
@@ -305,9 +313,9 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.py,*.js,*.cpp,*.h,*.css :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
+" autocmd BufWritePre *.py,*.js,*.cpp,*.h,*.css :%s/\s\+$//e
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Ack searching and cope displaying
@@ -342,7 +350,7 @@ map <leader>p :cp<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
+" Pressing <leader>ss will toggle and untoggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>

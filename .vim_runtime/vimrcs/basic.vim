@@ -141,7 +141,7 @@ set foldcolumn=1
 
 " highlight current line
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts

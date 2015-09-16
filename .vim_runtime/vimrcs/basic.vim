@@ -194,9 +194,12 @@ set smarttab
 " set tabstop=2
 " autocmd BufRead *.py,*.js set list smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class cc=79 colorcolumn=79
 autocmd BufRead *.py set ts=4 sw=4
-autocmd BufRead *.js set ts=2 sw=2 nu
+autocmd BufNewFile,BufEnter *.js set ts=2 sw=2 nu
 autocmd BufRead *.css set ts=2 sw=2
 autocmd BufRead,BufNewFile *.html set ts=2 sw=2
+autocmd BufRead,BufNewFile *.h set ts=4 sw=4
+autocmd BufRead,BufNewFile *.cpp set ts=4 sw=4
+autocmd BufRead,BufNewFile,BufEnter *.c set ts=4 sw=4
 
 " Linebreak on 500 characters
 set lbr
@@ -313,7 +316,7 @@ func! DeleteTrailingWS()
   %s/\s\+$//ge
   exe "normal `z"
 endfunc
-autocmd BufWrite *.py,*.js,*.cpp,*.h,*.css :call DeleteTrailingWS()
+autocmd BufWrite *.py,*.js,*.css :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 " autocmd BufWritePre *.py,*.js,*.cpp,*.h,*.css :%s/\s\+$//e
 
